@@ -1,0 +1,26 @@
+version: "3.8"
+services: #definice containeru
+  api:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - ./:/var/www/html
+    container_name: api
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+    container_name: dynamodb
+
+  dynamodbadmin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    links:
+      - "dynamodb" # dynamodb:dynamodb-admin
+    environment:
+      - DYNAMO_ENDPOINT=http://dynamodb:8000
+    container_name: dynamodbadmin
+
