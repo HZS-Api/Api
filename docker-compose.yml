@@ -1,5 +1,6 @@
 version: "3.8"
 services: #definice containeru
+
   api:
     build: .
     ports:
@@ -7,20 +8,29 @@ services: #definice containeru
     volumes:
       - ./:/var/www/html
     container_name: api
+    links:
+      - "dynamodb"
+    environment:
+      - DYNAMODB_URL=http://dynamodb:8000
+      - TABLE_NAME=incidents
+      - AWS_REGION=eu-west-1
 
   dynamodb:
     image: amazon/dynamodb-local
     ports:
       - "8000:8000"
     container_name: dynamodb
+    command:
+      - "-jar"
+      - "DynamoDBLocal.jar"
+      - "-sharedDb"
 
   dynamodbadmin:
     image: aaronshaf/dynamodb-admin
     ports:
       - "8001:8001"
     links:
-      - "dynamodb" # dynamodb:dynamodb-admin
+      - "dynamodb"
     environment:
       - DYNAMO_ENDPOINT=http://dynamodb:8000
     container_name: dynamodbadmin
-

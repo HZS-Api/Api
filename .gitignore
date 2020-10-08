@@ -1,6 +1,7 @@
 # IDE
 .vscode
 .idea
+.devcontainer
 
 # Python
 __pycache__
