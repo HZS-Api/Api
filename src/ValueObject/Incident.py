@@ -10,3 +10,8 @@ class Incident(object):
     __department = ''
     __state = ''
 
+    # Todo - constructor
+
+    # Todo - validator
+
+    # Todo - getters
