@@ -1,0 +1,24 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "- Flask: micro web framework\r - boto3: AWS API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HZS-Api/Api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HZS-Api/Api/issues"
+  },
+  "homepage": "https://github.com/HZS-Api/Api#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.0",
+    "serverless-wsgi": "^1.7.5"
+  }
+}
