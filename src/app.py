@@ -1,20 +1,15 @@
-import os
-from flask import Flask, request, jsonify
 from src.models.Incidents import Incidents as IncidentsModel
-from typing import Dict
+import sys
+from flask_injector import FlaskInjector
+from src.controllers import incidents_blueprint
+from src.config.dependencies import configure
 
-services: Dict
-app: Flask = Flask(__name__)
+def main(Flask):
+    print('This is standard ', file=sys.stdout)
+    app = Flask(__name__)
+    app.register_blueprint(incidents_blueprint)
 
+    # Setup Flask Injector
+    FlaskInjector(app=app, modules=[configure])
 
-def main():
-    app.run(host='0.0.0.0', debug=True)
-
-@app.route('/incident', methods=['POST'])
-def add_incident():
-    endpoint_url = os.environ['DYNAMODB_URL']
-    table_name = os.environ['TABLE_NAME']
-    model = IncidentsModel(endpoint_url, table_name)
-    data = request.json
-    resp = model.add_incident(data)
-    return jsonify(resp)
+    return app
