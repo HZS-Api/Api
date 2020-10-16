@@ -4,8 +4,8 @@ class Incidents:
     __client: boto3
     __table_name: str
 
-    def __init__(self, endpoint_url: str, table_name: str):
-        self.__client = boto3.client('dynamodb', region_name='', aws_access_key_id='', aws_secret_access_key='', endpoint_url=endpoint_url)
+    def __init__(self, db_client: boto3, table_name: str):
+        self.__client = db_client
         self.__table_name = table_name
 
     def add_incident(self, incident):

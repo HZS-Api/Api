@@ -5,7 +5,7 @@ from src.models.Incidents import Incidents as IncidentsModel
 incidents_blueprint = Blueprint('api', __name__)
 
 
-@incidents_blueprint.route('/', methods=['GET'])
+@incidents_blueprint.route('/test', methods=['GET'])
 def index():
     return jsonify([{'foo': 'bar'}])
 

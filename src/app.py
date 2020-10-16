@@ -1,4 +1,3 @@
-from src.models.Incidents import Incidents as IncidentsModel
 import sys
 from flask_injector import FlaskInjector
 from src.controllers import incidents_blueprint
