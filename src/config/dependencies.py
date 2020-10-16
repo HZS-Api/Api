@@ -4,7 +4,7 @@ from injector import singleton
 from src.models.Incidents import Incidents
 
 def configure(binder):
-    endpoint_url = os.environ['DYNAMODB_URL'] or ''
+    endpoint_url = os.environ['DYNAMODB_URL']
     table_name = os.environ['TABLE_NAME']
     db_client = get_db_client(endpoint_url)
     binder.bind(Incidents, to=Incidents(db_client, table_name), scope=singleton)
