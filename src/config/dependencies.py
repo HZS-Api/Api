@@ -1,13 +1,17 @@
 import os
 import boto3
 from injector import singleton
-from src.models.Incidents import Incidents
+from src.model.Incidents import Incidents as IncidentsModel
+from src.transformer.Incident import Incident as IncidentTransformer
+
 
 def configure(binder):
     endpoint_url = os.environ['DYNAMODB_URL']
     table_name = os.environ['TABLE_NAME']
     db_client = get_db_client(endpoint_url)
-    binder.bind(Incidents, to=Incidents(db_client, table_name), scope=singleton)
+    incident_transformer = IncidentTransformer()
+    binder.bind(IncidentsModel, to=IncidentsModel(incident_transformer, db_client, table_name), scope=singleton)
+
 
 def get_db_client(endpoint_url: str):
     if not endpoint_url :

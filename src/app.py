@@ -1,6 +1,6 @@
 import sys
 from flask_injector import FlaskInjector
-from src.controllers import incidents_blueprint
+from src.controller import incidents_blueprint
 from src.config.dependencies import configure
 
 def main(Flask):

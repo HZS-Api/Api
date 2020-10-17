@@ -1,6 +1,6 @@
 from flask import Blueprint, Flask, request, jsonify
 from injector import inject
-from src.models.Incidents import Incidents as IncidentsModel
+from src.model.Incidents import Incidents as IncidentsModel
 
 incidents_blueprint = Blueprint('api', __name__)
 
