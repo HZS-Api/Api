@@ -13,9 +13,10 @@ class Incidents:
         self.__table_name = table_name
 
     def add_incident(self, incident):
-        resp = self.__client.put_item(
-            TableName = self.__table_name,
-            Item = self.__incident_transformer.transform(incident)
-        )
+        return self.__incident_transformer.transform(incident)
+        # resp = self.__client.put_item(
+        #     TableName = self.__table_name,
+        #     Item = self.__incident_transformer.transform(incident)
+        # )
 
-        return resp
+        # return resp
